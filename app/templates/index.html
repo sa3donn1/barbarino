@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}قائمة العملاء{% endblock %}
+
+{% block content %}
+    <h2>قائمة العملاء</h2>
+    <form action="{{ url_for('main.search') }}" method="POST">
+        <input type="text" name="query" placeholder="ابحث بالاسم" value="{{ search_query if search_query }}">
+        <button type="submit">بحث</button>
+    </form>
+    <table border="1" cellpadding="5">
+        <tr>
+            <th>الاسم</th>
+            <th>الهاتف</th>
+            <th>تاريخ الحلاقة</th>
+            <th>الحلاق المفضل</th>
+            <th>المدة بين الحلاقات</th>
+            <th>وصف الحلاقة</th>
+            <th>صورة آخر حلاقة</th>
+            <th>تعديل</th>
+            <th>حذف</th>
+            <!-- العمود الجديد -->
+            <th>بروفايل</th>
+        </tr>
+        {% for client in clients %}
+        <tr>
+            <td>{{ client.name }}</td>
+            <td>{{ client.phone }}</td>
+            <td>{{ client.last_haircut }}</td>
+            <td>
+                {% if client.barber %}
+                    {{ client.barber.name }}
+                {% else %}
+                    <em>بدون حلاق</em>
+                {% endif %}
+            </td>
+            <td>{{ client.interval_days }}</td>
+            <td>{{ client.haircut_description }}</td>
+            <td>
+                {% if client.haircut_image %}
+                <a href="{{ url_for('static', filename='uploads/' ~ client.haircut_image) }}" target="_blank">
+                    <img src="{{ url_for('static', filename='uploads/' ~ client.haircut_image) }}" alt="صورة آخر حلاقة" width="80" height="80">
+                </a>
+                {% else %}
+                    <em>لا توجد صورة</em>
+                {% endif %}
+            </td>
+            <td><a href="{{ url_for('main.edit_client', phone=client.phone) }}">تعديل</a></td>
+            <td><a href="{{ url_for('main.delete_client', phone=client.phone) }}">حذف</a></td>
+
+            <!-- زر أو رابط لعرض بروفايل العميل -->
+            <td>
+                <a href="{{ url_for('main.client_profile', client_id=client.id) }}" class="btn btn-info">
+                    عرض الملف
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

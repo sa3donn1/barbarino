@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}تحليلات إضافية{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+  <h2 class="mb-4">تحليلات إضافية</h2>
+
+  <!-- Row of Cards for average time between visits, average rating -->
+  
+
+    <!-- متوسط التقييم -->
+    <div class="col-md-6 mb-3">
+      <div class="card text-white bg-secondary">
+        <div class="card-body text-center">
+          <h5 class="card-title">متوسط التقييم (Feedback)</h5>
+          <h2 class="card-text">{{ avg_rating }} / 5</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Most Frequent Clients -->
+  <div class="mb-4">
+    <h4>أكثر العملاء تكرارًا</h4>
+    <table class="table table-dark table-striped">
+      <thead>
+        <tr>
+          <th>اسم العميل</th>
+          <th>عدد الحلاقات</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for name, num_haircuts in most_frequent %}
+        <tr>
+          <td>{{ name }}</td>
+          <td>{{ num_haircuts }}</td>
+        </tr>
+        {% else %}
+        <tr>
+          <td colspan="2" class="text-center">لا يوجد عملاء حتى الآن</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

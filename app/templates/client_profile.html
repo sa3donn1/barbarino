@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %}ملف العميل: {{ client.name }}{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+  <!-- كارد الغلاف والصورة الشخصية -->
+  <div class="card mb-4">
+    <!-- صورة الغلاف -->
+    <img src="{{ url_for('static', filename='cover.jpg') }}" 
+         class="card-img-top" 
+         alt="Cover Image" 
+         style="height: 200px; object-fit: cover;">
+    
+    <!-- قسم المحتوى الرئيسي -->
+    <div class="card-body text-center">
+      <!-- الصورة الشخصية (إذا لا يوجد، ضع default-profile.png) -->
+      <div class="profile-img-wrapper" style="margin-top: -80px;">
+        {% if client.haircut_image %}
+          <img src="{{ url_for('static', filename='uploads/' ~ client.haircut_image) }}"
+               class="rounded-circle border border-3 border-white"
+               alt="{{ client.name }}"
+               width="150" height="150"
+               style="object-fit: cover;">
+        {% else %}
+          <img src="{{ url_for('static', filename='default-profile.png') }}"
+               class="rounded-circle border border-3 border-white"
+               alt="No image"
+               width="150" height="150"
+               style="object-fit: cover;">
+        {% endif %}
+      </div>
+
+      <h3 class="mt-3">{{ client.name }}</h3>
+      <p class="text-muted mb-0">{{ client.phone }}</p>
+    </div>
+  </div>
+
+  <!-- بطاقة المعلومات التفصيلية -->
+  <div class="card shadow-sm mb-4">
+    <div class="card-body">
+      <div class="row text-center mb-3">
+        <div class="col-md-4 mb-3">
+          <h6 class="text-muted">تاريخ آخر حلاقة</h6>
+          {% if client.last_haircut %}
+            <span class="fw-bold">{{ client.last_haircut.strftime("%d/%m/%Y") }}</span>
+          {% else %}
+            <span class="text-muted">لا يوجد</span>
+          {% endif %}
+        </div>
+        <div class="col-md-4 mb-3">
+          <h6 class="text-muted">الحلاق المعين</h6>
+          {% if client.barber %}
+            <span class="fw-bold">{{ client.barber.name }}</span>
+          {% else %}
+            <span class="text-muted">غير محدد</span>
+          {% endif %}
+        </div>
+        <div class="col-md-4 mb-3">
+          <h6 class="text-muted">المدة بين الحلاقات (أيام)</h6>
+          <span class="fw-bold">{{ client.interval_days }}</span>
+        </div>
+      </div>
+      <hr>
+      <h6 class="text-muted mb-2">وصف الحلاقة:</h6>
+      <p>{{ client.haircut_description or "غير محدد" }}</p>
+    </div>
+  </div>
+
+  <!-- أزرار التنقل والتعديل -->
+  <div class="text-center">
+    <!-- تأكد من أن phone موجود في الـ Client فعليًا -->
+    <a href="{{ url_for('main.edit_client', phone=client.phone) }}" class="btn btn-success me-2">
+      تعديل بيانات العميل
+    </a>
+    <a href="{{ url_for('main.index') }}" class="btn btn-secondary">
+      العودة للرئيسية
+    </a>
+  </div>
+</div>
+{% endblock %}

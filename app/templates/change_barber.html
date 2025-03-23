@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}تغيير حلاق للعميل{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1>تغيير الحلاق للعميل: {{ client.name }}</h1>
+  
+  <form method="POST" action="{{ url_for('main.change_barber', client_id=client.id) }}">
+    <div class="mb-3">
+      <label for="barberSelect" class="form-label">اختر الحلاق الجديد:</label>
+      <select name="new_barber_id" id="barberSelect" class="form-select">
+        {% for barber in barbers %}
+          <option 
+            value="{{ barber.id }}"
+            {% if client.barber_id == barber.id %}selected{% endif %}
+          >
+            {{ barber.name }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">تحديث الحلاق</button>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,387 @@
+/* Reset default styles for consistency */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Body styling - Black background, white text */
+body {
+    background-color: #1a1a1a; /* Dark charcoal */
+    color: #ffffff; /* White text */
+    line-height: 1.6;
+    direction: rtl; /* Right-to-left for Arabic */
+}
+
+/* Header styling */
+header {
+    background-color: #000000; /* Pure black */
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #333333; /* Subtle gray border */
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: 300; /* Light weight for sleekness */
+    letter-spacing: 2px;
+}
+
+/* Navigation styling */
+nav {
+    margin-top: 10px;
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #cccccc; /* Light gray on hover */
+}
+
+/* Main content */
+main {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+/* Headings */
+h2 {
+    font-size: 2rem;
+    font-weight: 300;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #262626; /* Dark gray */
+    color: #ffffff;
+}
+
+th, td {
+    padding: 15px;
+    text-align: right;
+    border-bottom: 1px solid #404040; /* Medium gray */
+}
+
+th {
+    background-color: #333333; /* Slightly lighter gray */
+    font-weight: 400;
+}
+
+td a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+td a:hover {
+    color: #cccccc;
+}
+
+/* Forms */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+input[type="text"], input[type="number"] {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #404040;
+    background-color: #333333;
+    color: #ffffff;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus, input[type="number"]:focus {
+    border-color: #cccccc;
+}
+
+button {
+    padding: 10px;
+    font-size: 1.1rem;
+    background-color: #ffffff;
+    color: #1a1a1a;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #cccccc;
+}
+
+/* Flash messages */
+.flash-messages {
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.flash-messages li {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.flash-messages li.error {
+    background-color: #ff3333; /* Red for errors */
+    color: #ffffff;
+}
+
+.flash-messages li.success {
+    background-color: #33cc33; /* Green for success */
+    color: #ffffff;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #00000000; /* Use pure black */
+    color: #999999; /* Light gray */
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Date input */
+input[type="date"] {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #404040;
+    background-color: #333333;
+    color: #ffffff;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+input[type="date"]:focus {
+    border-color: #cccccc;
+}
+
+/* Customize the date picker icon/button */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1); /* Makes the icon white */
+    cursor: pointer;
+}
+
+/* A container box for forms if needed */
+.form-container {
+    max-width: 600px;
+    margin: 30px auto;
+    background-color: #1a1a1a;
+    border: 1px solid #404040;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+/* Group each input/label */
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #fff;
+}
+
+/* File input styling */
+.form-group input[type="file"] {
+    padding: 8px;
+    font-size: 1rem;
+    border: 1px solid #404040;
+    background-color: #333333;
+    color: #ffffff;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input[type="file"]:focus {
+    border-color: #cccccc;
+}
+
+/* Special button (e.g., "إضافة عميل") */
+.btn-submit {
+    background-color: #ffffff;
+    color: #1a1a1a;
+    padding: 10px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: #cccccc;
+}
+
+/* Optional second button (e.g., "إلغاء") */
+.btn-cancel {
+    background-color: #666;
+    color: #fff;
+    padding: 10px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.btn-cancel:hover {
+    background-color: #888;
+}
+
+/* =========================
+   Dashboard (واجهة) Styles
+   ========================= */
+
+/* A container that holds all the dashboard cards in rows */
+.dashboard-container {
+    display: flex;
+    flex-wrap: wrap;         /* Allows cards to wrap to next line if needed */
+    justify-content: center; /* Center them horizontally */
+    gap: 20px;               /* Spacing between cards */
+    margin: 20px 0;
+}
+
+/* Each individual card box */
+.dashboard-card {
+    width: 220px;              /* Wider card */
+    height: 150px;             /* Taller card */
+    border-radius: 15px;       /* Rounded corners */
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;   /* Vertically center */
+    align-items: center;       /* Horizontally center */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect */
+.dashboard-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
+}
+
+/* Heading inside the card */
+.dashboard-card h1 {
+    font-size: 2.5rem;  /* Larger text size */
+    margin-bottom: 5px;
+}
+
+.dashboard-card p {
+    font-size: 1.2rem;   /* Larger label */
+    font-weight: 400;
+}
+
+/* Color variants for different cards */
+.dashboard-card.bg-blue {
+    background-color: #3498db;
+}
+
+.dashboard-card.bg-green {
+    background-color: #27ae60;
+}
+
+.dashboard-card.bg-red {
+    background-color: #e74c3c;
+}
+
+.dashboard-card.bg-yellow {
+    background-color: #f1c40f;
+    color: #1a1a1a;
+}
+
+.dashboard-card.bg-orange {
+    background-color: #e67e22;
+}
+
+/* Container for the cards */
+.no-wrap-row {
+    display: flex;
+    flex-wrap: nowrap;         /* Keep all cards in one row */
+    justify-content: center;   /* Center them horizontally */
+    gap: 40px;                 /* Increase gap between cards */
+    margin-bottom: 20px;
+}
+
+/* ========== Login Page Styles ========== */
+
+/* ========== Login Page Styles ========== */
+
+/* حاوية خارجية لتوسيط المحتوى عموديًا وأفقيًا */
+.login-container {
+    height: 80vh;                 /* ارتفاع الحاوية 80% من نافذة العرض */
+    display: flex;               /* استخدام فليكس لتوسيط العناصر */
+    justify-content: center;     /* توسيط أفقي */
+    align-items: center;         /* توسيط عمودي */
+}
+
+/* بطاقة تسجيل الدخول */
+.login-card {
+    width: 350px;
+    background-color: #2c2c2c;    /* لون خلفية داكن */
+    border-radius: 10px;         /* تدوير الحواف */
+    padding: 1.5rem;             /* مسافة داخلية */
+}
+
+/* عنوان البطاقة */
+.login-card h2 {
+    color: #fff;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+/* تنسيق تسمية الحقول (Label) */
+.login-card .form-label {
+    color: #fff;                 /* نفس اللون لحقل اسم المستخدم وكلمة المرور */
+}
+
+/* تنسيق الحقول النصية (Input) */
+.login-card .form-control {
+    background-color: #333;      /* لون خلفية الحقل */
+    color: #fff;                 /* لون الخط */
+    border: none;                /* إزالة الإطار الافتراضي */
+    border-radius: 4px;          /* تدوير خفيف لحواف الحقل */
+}
+
+/* تنسيق الحقل عند التركيز */
+.login-card .form-control:focus {
+    outline: none;               /* إزالة تأثير التركيز الافتراضي */
+    box-shadow: 0 0 0 2px #007bff; /* إضافة ظل أزرق عند التركيز */
+}
+
+/* زر تسجيل الدخول */
+.login-card .btn {
+    width: 100%;
+    font-weight: bold;
+}
+

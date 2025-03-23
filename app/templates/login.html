@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container login-container">
+  <div class="card login-card">
+    <h2>تسجيل الدخول</h2>
+    <form method="POST" action="{{ url_for('main.login') }}">
+      <div class="mb-3">
+        <label for="username" class="form-label">اسم المستخدم</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          id="username" 
+          name="username" 
+          placeholder="أدخل اسم المستخدم" 
+          required
+        >
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">كلمة المرور</label>
+        <input 
+          type="password" 
+          class="form-control" 
+          id="password" 
+          name="password" 
+          placeholder="أدخل كلمة المرور" 
+          required
+        >
+      </div>
+      <button type="submit" class="btn btn-primary">
+        تسجيل الدخول
+      </button>
+    </form>
+  </div>
+</div>
+{% endblock %}

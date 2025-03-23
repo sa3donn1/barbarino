@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}المواعيد القادمة للحلاقة{% endblock %}
+
+{% block content %}
+<h2>المواعيد القادمة للحلاقة</h2>
+<table border="1" cellpadding="5">
+  <tr>
+    <th>اسم العميل</th>
+    <th>الحلاق</th>
+    <th>تاريخ الحلاقة القادمة</th>
+    <th>الأيام المتبقية</th>
+    <th>تجديد الموعد</th>
+    <th>تغيير الحلاق</th>
+  </tr>
+  {% for name, barber_name, next_date, remaining_days, phone, client_id in next_list %}
+  <tr>
+    <td>{{ name }}</td>
+    <td>{{ barber_name }}</td>
+    <td>{{ next_date }}</td>
+    <td>{{ remaining_days }}</td>
+    <td>
+      <!-- Renew form includes a Rating input -->
+      <form action="{{ url_for('main.renew_haircut', phone=phone) }}" method="POST" style="display:inline;">
+        <!-- rating input -->
+        <label for="rating">تقييم:</label>
+        <input type="number" name="rating" id="rating" min="1" max="5" step="0.5" style="width:50px;" required>
+
+        <button type="submit">تجديد</button>
+      </form>
+    </td>
+    <td>
+      <a href="{{ url_for('main.change_barber', client_id=client_id) }}">تغيير الحلاق</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}تعديل بيانات العميل{% endblock %}
+
+{% block content %}
+<h2>تعديل بيانات العميل</h2>
+
+<form action="{{ url_for('main.edit_client', phone=client.phone) }}" method="POST" enctype="multipart/form-data">
+  <p>
+    <label for="name">اسم العميل:</label>
+    <input type="text" id="name" name="name" value="{{ client.name }}" required>
+  </p>
+  
+  <p>
+    <label for="phone">رقم الهاتف:</label>
+    <input type="text" id="phone" name="phone" value="{{ client.phone }}" required>
+  </p>
+  
+  <p>
+    <label for="last_haircut">تاريخ الحلاقة:</label>
+    <input type="text" id="last_haircut" name="last_haircut" 
+           value="{{ client.last_haircut }}" required>
+  </p>
+  
+  <p>
+    <label for="interval_days">عدد الأيام بين الحلاقات:</label>
+    <input type="text" id="interval_days" name="interval_days" value="{{ client.interval_days }}" required>
+  </p>
+  
+  <p>
+    <label for="barber_name">اسم الحلاق المفضل:</label>
+    <input type="text" id="barber_name" name="barber_name" value="{{ client.barber_name }}" required>
+  </p>
+  
+  <p>
+    <label for="haircut_desc">وصف الحلاقة:</label>
+    <input type="text" id="haircut_desc" name="haircut_desc" value="{{ client.haircut_description }}">
+  </p>
+  
+  <!-- عرض الصورة الحالية إن وجدت -->
+  {% if client.haircut_image %}
+  <p>
+    الصورة الحالية:
+    <img 
+      src="{{ url_for('static', filename='uploads/' ~ client.haircut_image) }}" 
+      alt="صورة العميل" width="80" height="80">
+  </p>
+  {% endif %}
+  
+  <!-- حقل رفع صورة جديدة (اختياري) -->
+  <p>
+    <label for="haircut_image">صورة جديدة (اختياري):</label>
+    <input type="file" id="haircut_image" name="haircut_image" accept="image/*">
+  </p>
+  
+  <button type="submit">حفظ التعديلات</button>
+</form>
+
+<!-- إن كنت تستخدم Flatpickr: -->
+<script>
+  flatpickr("#last_haircut", {
+    dateFormat: "Y-m-d", // أو d/m/Y حسب الصيغة التي تعتمدها
+    maxDate: "today",
+    locale: { firstDayOfWeek: 6 }
+  });
+</script>
+{% endblock %}

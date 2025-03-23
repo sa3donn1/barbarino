@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}إحصائيات الحلاقين{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+  <h1 class="mb-4 text-center">إحصائيات الحلاقين</h1>
+  <table class="table table-striped table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th>رقم الحلاق</th>
+        <th>اسم الحلاق</th>
+        <th>عدد الحلاقات</th>
+        <th>عدد العملاء</th>
+        <th>متوسط التقييم</th>  <!-- New column -->
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in data %}
+      <tr>
+        <td>{{ row.barber_id }}</td>
+        <td>{{ row.barber_name }}</td>
+        <td>{{ row.num_haircuts }}</td>
+        <td>{{ row.num_clients }}</td>
+        <td>
+          {% if row.avg_rating %}
+            {{ "%.1f"|format(row.avg_rating) }} / 5
+          {% else %}
+            لا يوجد
+          {% endif %}
+        </td>
+      </tr>
+      {% else %}
+      <tr>
+        <td colspan="5" class="text-center">لا توجد بيانات!</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

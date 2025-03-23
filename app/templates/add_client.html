@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}إضافة عميل جديد{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h2>إضافة عميل جديد</h2>
+  
+  <!-- مهم: نحتاج enctype="multipart/form-data" عند رفع ملفات -->
+  <form action="{{ url_for('main.add_client') }}" method="POST" enctype="multipart/form-data">
+    
+    <div class="form-group">
+      <label for="name">اسم العميل:</label>
+      <input type="text" id="name" name="name" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="phone">رقم الهاتف:</label>
+      <input type="text" id="phone" name="phone" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="last_haircut">تاريخ الحلاقة:</label>
+      <input type="text" id="last_haircut" name="last_haircut" required placeholder="اختر التاريخ">
+      
+    </div>
+    
+    <div class="form-group">
+      <label for="interval_days">عدد الأيام بين الحلاقات:</label>
+      <input type="text" id="interval_days" name="interval_days" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="barber_name">اسم الحلاق المفضل:</label>
+      <input type="text" id="barber_name" name="barber_name" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="haircut_desc">وصف الحلاقة:</label>
+      <input type="text" id="haircut_desc" name="haircut_desc">
+    </div>
+    
+    <!-- حقل رفع الصورة -->
+    <div class="form-group">
+      <label for="haircut_image">صورة آخر حلاقة:</label>
+      <input type="file" id="haircut_image" name="haircut_image" accept="image/*">
+    </div>
+    
+    <!-- زر إرسال النموذج -->
+    <button type="submit" class="btn-submit">إضافة عميل</button>
+    
+  </form>
+</div>
+
+<!-- لو تستخدم مكتبة Flatpickr لتاريخ الحلاقة -->
+<script>
+  flatpickr("#last_haircut", {
+    dateFormat: "d/m/Y",
+    maxDate: "today",
+    locale: { firstDayOfWeek: 6 }
+  });
+</script>
+{% endblock %}
